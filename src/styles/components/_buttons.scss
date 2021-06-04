@@ -1,0 +1,74 @@
+//una clase que van a heredar todos los botones
+.btn{
+    padding: 7px 10px 7px 10px;
+    border-radius: 25px;
+    box-shadow: $shadow;
+    transition: all .3s ease-in;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    color: $primary;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.btn-primary{
+    background: transparent;
+    border: 3px solid $second;
+    width: 150px;
+    &:disabled{
+        background: #e7e7e7;
+        box-shadow: none;
+    }
+    &:hover{
+        background-color: $second;
+        color: $font-light;
+    }
+}
+
+.google-btn{
+    cursor: pointer;
+    margin-top: 5px;
+    width: 100%;
+    height: 47px;
+    background-color: $googel-bue;
+    border-radius: 25px;
+    box-shadow: 0 3px 4px 0 rgba($color: #000000, $alpha: .25);
+
+    transition: box-shadow 0.3s ease;
+
+    .google-wrapper{
+        position: absolute;
+        width: 47px;
+        height: 47px;
+        border-radius: 25px 0 0 25px;
+        background-color: $font-light;
+    }
+    .google-icon{
+        position: absolute;
+        margin-top: 13px;
+        margin-left: 14px;
+        width: 23px;
+        height: 23px;
+    }
+
+    .btn-text{
+        float: right;
+        margin-top: 13px;
+        margin-right: 150px;
+        color: $font-light;
+        font-size: 18px;
+        letter-spacing: 0.4px;
+    }
+
+    &:hover{
+        box-shadow: 0 0 9px $googel-bue;
+    }
+    &:active{
+        background: $button-active-blue;
+    }
+}

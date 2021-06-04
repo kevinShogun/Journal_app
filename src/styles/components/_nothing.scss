@@ -1,0 +1,19 @@
+.nothing__main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $primary;
+    color: $white;
+
+    p{
+        text-align: center;
+        font-weight: 900;
+        font-size: 18px;
+    }
+}
+.nothing__img{
+    margin-top: 15px;
+    width: 250px;
+}

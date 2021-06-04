@@ -1,3 +1,17 @@
-html, body{
-    background-color: cadetblue;
-}
+
+// Global
+@import "./base/settings";
+@import "./base/base";
+
+//components
+@import "./components/auth";
+// Buttons
+@import "./components/buttons";
+//Links
+@import "./components/link";
+// Journal Main
+@import "./components/journal";
+// nothing
+@import "./components/nothing";
+// notes
+@import "./components/notes";

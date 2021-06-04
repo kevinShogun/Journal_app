@@ -1,0 +1,44 @@
+.notes__main-content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.notes__appbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+    background-color: $primary;
+    padding: 10px 20px;
+}
+
+.notes__content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.notes__title-input,
+.notes__textarea{
+    border: none;
+    outline: none;
+    color: $dark-gray;
+}
+.notes__title-input{
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.notes__textarea{
+    font-size: 25px;
+    flex: 1 1 auto;
+    resize: none;
+}
+
+.notes__image img{
+    height: 200px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
