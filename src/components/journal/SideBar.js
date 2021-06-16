@@ -18,7 +18,11 @@ export const SideBar = () => {
             </div>
 
             <div className="journal__new-entry">
-                <i className="far fa-calendar-plus fa-5x"></i>
+            <img
+								className="journal__img-entry"
+								src={`../assets/2830540.png`}
+								alt="entry button"
+							/>
                 <p className="mt-5">New Entry</p>
             </div>
 
