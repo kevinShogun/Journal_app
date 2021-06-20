@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import  {Link}  from "react-router-dom";
+import { startGitHubLogin, startGoogleLogin, startLoginEmailPassword } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
-import { login } from "../actions/auth";
 
 export const LoginScreen = () => {
 
@@ -17,9 +17,18 @@ export const LoginScreen = () => {
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		dispatch(login(12456, 'Kevin Yamil'));
+		dispatch( startLoginEmailPassword(email, password));
 		
 	}
+
+	const handleGithubLogin = () =>{
+		dispatch(startGitHubLogin());
+	}
+
+	const handleGoogleLogin = () =>{
+		dispatch(startGoogleLogin());
+	}
+
 	return (
 		<>
 			<h3 className="auth__title">Login</h3>
@@ -48,14 +57,17 @@ export const LoginScreen = () => {
 				/>
 
 				<button type="submit"
-				className='btn btn-primary'	>
+				className='btn btn-primary'>
 					Login
 				</button>
 
 				<div className="auth__social-networks">
 					<p>Login with social networks</p>
 
-					<div className="google-btn">
+					<div 
+						className="google-btn"
+						onClick={handleGoogleLogin}
+					>
 						<div className="google-wrapper">
 							<img
 								className="google-icon"
@@ -64,7 +76,25 @@ export const LoginScreen = () => {
 							/>
 						</div>
 						<p className="btn-text">
-							<b>Sign in with google</b>
+							<b>Sign in with Google</b>
+						</p>
+					</div>
+
+					<br />
+					
+					<div 
+						className="google-btn github"
+						onClick={handleGithubLogin}
+						>
+						<div className="google-wrapper">
+							<img
+								className="google-icon"
+								src={`../assets/github.png`}
+								alt="google button"
+							/>
+						</div>
+						<p className="btn-text">
+							<b>Sign in with GitHub</b>
 						</p>
 					</div>
 				</div>

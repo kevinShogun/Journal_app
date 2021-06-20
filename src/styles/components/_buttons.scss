@@ -66,9 +66,16 @@
     }
 
     &:hover{
-        box-shadow: 0 0 9px $googel-bue;
+        box-shadow: 0 0 15px $googel-bue;
     }
     &:active{
         background: $button-active-blue;
+    }
+}
+.github{
+    background-color: #222;
+
+    &:hover{
+        box-shadow: 0 0 15px #222;
     }
 }
