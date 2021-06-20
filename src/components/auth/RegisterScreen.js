@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import validator from "validator";
 import { useForm } from "../../hooks/useForm";
 import { Link } from "react-router-dom";
@@ -7,6 +7,9 @@ import { setError, removeError } from "../../actions/ui";
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
+
+  const {msgError} = useSelector(state => state.ui);
+  
 
   const [formValues, handleInputChange] = useForm({
     name: "kevin",
@@ -21,8 +24,11 @@ export const RegisterScreen = () => {
     e.preventDefault();
 
     if (isFormValid()) {
+      
       dispatch(setError("All Acces"));
+      console.log('correct');
     }
+    
   };
 
   const isFormValid = () => {
@@ -34,12 +40,15 @@ export const RegisterScreen = () => {
     ) {
       dispatch(setError("Register Error Empty Field"));
       return false;
+
     } else if (!validator.isEmail(email)) {
       dispatch(setError("email is Requiered"));
       return false;
+    
     } else if (password.trim() !== confirm.trim()) {
       dispatch(setError("the password isn't equal"));
       return false;
+    
     } else if (password.length < 5) {
       dispatch(setError("the password is short, should be at least 6 characters"));
       return false;
@@ -58,7 +67,13 @@ export const RegisterScreen = () => {
         alt="google button"
       />
 
-      <div className="auth__alert-error">Error 🚫 😕</div>
+      {
+        msgError && 
+        (
+          <div className="auth__alert-error">{msgError} 🚫 😕</div>
+        )
+      }
+      
       <form onSubmit={handleRegister}>
         <input
           type="text"
