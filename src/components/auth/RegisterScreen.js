@@ -15,8 +15,8 @@ export const RegisterScreen = () => {
   const [formValues, handleInputChange] = useForm({
     name: "kevin",
     email: "gkebin@gmail.com",
-    password: "123456",
-    confirm: "123456",
+    password: "132465",
+    confirm: "132465",
   });
 
   const { name, email, password, confirm } = formValues;
@@ -31,6 +31,7 @@ export const RegisterScreen = () => {
     }
     
   };
+
 
   const isFormValid = () => {
     if (
