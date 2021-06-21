@@ -4,6 +4,7 @@ import validator from "validator";
 import { useForm } from "../../hooks/useForm";
 import { Link } from "react-router-dom";
 import { setError, removeError } from "../../actions/ui";
+import { startRegisterWhitEmailPassword } from "../../actions/auth";
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export const RegisterScreen = () => {
 
     if (isFormValid()) {
       
-      dispatch(setError("All Acces"));
+      dispatch(startRegisterWhitEmailPassword(email, password, name));
       console.log('correct');
     }
     

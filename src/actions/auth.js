@@ -7,10 +7,9 @@ export const startGoogleLogin = () =>{
         firebase.auth().signInWithPopup(googleAuthProvider)
         .then( userCred =>{
             console.log(userCred);
-        });
+        }).catch( e => console.log(e));
     }
 }
-
 
 export const startGitHubLogin = () =>{
     return(dispatch) => {
@@ -19,10 +18,23 @@ export const startGitHubLogin = () =>{
             dispatch(
                 login(user.uid, user.displayName)
             )
-        })
+        }).catch( e => console.log(e));
     }
 }
 
+export const startRegisterWhitEmailPassword = (email, password, name) => {
+    return(dispatch) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then( async ({user}) =>{
+                console.log(user);
+
+                await user.updateProfile({displayName: name});
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+            }).catch( e => console.log(e));
+    }
+}
 
 export const startLoginEmailPassword = (email, password) =>{
     return(dispatch) => {
