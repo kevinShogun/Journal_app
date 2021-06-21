@@ -80,3 +80,15 @@
     bottom: 10px;
     position: relative;
 }
+
+@media (max-width: 420px) {
+    .auth__box-container{
+        width: 320px;
+    }
+    .auth__icon-user{
+        width: 155px;
+        float: right;
+        right: 80px;
+        bottom: 5px;
+    }
+}

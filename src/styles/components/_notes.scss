@@ -38,7 +38,31 @@
 }
 
 .notes__image img{
-    height: 250px;
+    width: 280px;
     margin-left: 50px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 640px) {
+    .notes__title-input{
+        font-size: 14px;
+    }
+    .notes__textarea{
+        font-size: 14px;
+    }
+    .notes__image img{
+        width: 200px;
+    }
+    .notes__appbar{
+        font-size: 12px;
+    }
+}
+@media (max-width: 420px) {
+    .notes__image img{
+        width: 100px;
+    }
+
+    .btn{
+        padding: 4px;
+    }
 }
