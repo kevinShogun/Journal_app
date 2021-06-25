@@ -7,4 +7,9 @@ export const types = {
     // para mostrar el mesaje de error
     uiSetError: '[UI] Set Error',
     uiRemoveError: '[UI] Remove Error',
+
+    // para la autenticacion
+    uiStartLoading: '[UI] Start loading',
+    uiFinishLoading: '[UI] Finish loading',
+
 }

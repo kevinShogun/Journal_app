@@ -8,13 +8,12 @@ import { startRegisterWhitEmailPassword } from "../../actions/auth";
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
-
-  const {msgError} = useSelector(state => state.ui);
+  const {msgError, loading} = useSelector(state => state.ui);
   
 
   const [formValues, handleInputChange] = useForm({
     name: "kevin",
-    email: "gkebin@gmail.com",
+    email: "gkevinyamil@gmail.com",
     password: "132465",
     confirm: "132465",
   });
@@ -112,7 +111,11 @@ export const RegisterScreen = () => {
           value={confirm}
         />
 
-        <button type="submit" className="btn btn-primary mb-5 mb-5">
+        <button 
+          type="submit" 
+          className="btn btn-primary mb-5 mb-5"
+          disabled={loading}
+        >
           Register
         </button>
 

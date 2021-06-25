@@ -12,7 +12,7 @@
     font-weight: 900;
     color: $primary;
     &:hover{
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 }
 
@@ -20,15 +20,22 @@
     background: transparent;
     border: 3px solid $second;
     width: 150px;
-    &:disabled{
-        background: #e7e7e7;
-        box-shadow: none;
-    }
+    
     &:hover{
         background-color: $second;
         color: $font-light;
     }
 }
+.btn-primary:disabled{
+    background: #e7e7e7;
+    box-shadow: none;
+    border: 2px solid #c2c2c2;
+    &:hover{
+        transform: scale(1.0);
+        color: $primary;
+    }
+}
+
 
 .google-btn{
     cursor: pointer;
