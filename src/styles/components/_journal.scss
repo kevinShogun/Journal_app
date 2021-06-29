@@ -112,6 +112,9 @@
     .btn{
         font-size: 10px;
     }
+    .journal__sidebar-navbar{
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 420px) {
@@ -127,5 +130,11 @@
     }
     .journal__entry-content{
         font-size: 10px;
+    }
+    .journal__sidebar{
+        width: 150px;
+    }
+    .journal__sidebar-navbar{
+        flex-direction: column;
     }
 }

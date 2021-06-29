@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import validator from "validator";
-import Swal from "sweetalert2";
+//import Swal from "sweetalert2";
 import { useForm } from "../../hooks/useForm";
 import { Link } from "react-router-dom";
 import { setError, removeError } from "../../actions/ui";
