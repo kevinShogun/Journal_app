@@ -28,7 +28,7 @@ export const RegisterScreen = () => {
       
       dispatch(startRegisterWhitEmailPassword(email, password, name));
       console.log('correct');
-      Swal.fire("Ok",'por favor ve atu email y verifica el correo electronico', "OK");
+     // Swal.fire("Ok",'por favor ve atu email y verifica el correo electronico', "OK");
     }
     
   };

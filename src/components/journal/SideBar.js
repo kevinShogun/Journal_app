@@ -1,25 +1,38 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
+import {firebase} from '../../firebase/firebaseConfig'
 import { JournalEntries } from './JournalEntries'
 
 export const SideBar = () => {
 
+    const {name} = useSelector(state => state.auth);
+    const {providerData} = firebase.auth().currentUser;
+
+    const {photoURL} = providerData[0];
     const dispatch = useDispatch();
 
     const handleLogOut = () => {
         dispatch(startLogout() );
     }
 
+    const hanldeTask = (e) => {
+        e.preventDefault();
+        console.log(photoURL);
+    }
     return (
         <aside className="journal__sidebar">
 
+                <img 
+                    src={photoURL}
+                    alt="profile"
+                    className='journal__profile'
+                />
             <div className="journal__sidebar-navbar">
                 <h3 className="mt-5">
                     <i className="far fa-moon"></i>
-                    <span>Kevin Garcia</span>
+                    <span>{name}</span>
                 </h3>
-
 
                 <button 
                     className="btn"
@@ -29,7 +42,8 @@ export const SideBar = () => {
                 </button>
             </div>
 
-            <div className="journal__new-entry">
+            <div className="journal__new-entry"
+            onClick={hanldeTask}>
             <img
 								className="journal__img-entry"
 								src={`../assets/2830540.png`}
