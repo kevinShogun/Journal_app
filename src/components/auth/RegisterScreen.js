@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import validator from "validator";
+import Swal from "sweetalert2";
 import { useForm } from "../../hooks/useForm";
 import { Link } from "react-router-dom";
 import { setError, removeError } from "../../actions/ui";
@@ -27,6 +28,7 @@ export const RegisterScreen = () => {
       
       dispatch(startRegisterWhitEmailPassword(email, password, name));
       console.log('correct');
+      Swal.fire("Ok",'por favor ve atu email y verifica el correo electronico', "OK");
     }
     
   };

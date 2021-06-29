@@ -18,14 +18,22 @@ export const AppRouter = () => {
 
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-	useEffect(() => {
-		firebase.auth().onAuthStateChanged( (user) =>{
+	
 
-			if(user?.uid){
+	
+		
+	useEffect(() => {
+		
+		
+		firebase.auth().onAuthStateChanged( (user) =>{
+			
+			const userV = firebase.auth().currentUser;
+
+			if(user?.uid && userV.emailVerified){
 
 				dispatch(login(user.uid, user.displayName));
 				setIsLoggedIn(true);
-
+				
 			}else{
 
 				setIsLoggedIn(false);
@@ -35,6 +43,8 @@ export const AppRouter = () => {
 		})	
 
 	}, [dispatch, setChecking]);
+
+	
 
 	if(checking){
 		return(

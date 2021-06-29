@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import {
   firebase,
   githubAuthProvider,
@@ -6,8 +6,6 @@ import {
 } from "../firebase/firebaseConfig";
 import { types } from "../types/types";
 import { finishLoading, startLoading } from "./ui";
-
-
 
 export const startGoogleLogin = () => {
   return (dispatch) => {
@@ -30,23 +28,20 @@ export const startGitHubLogin = () => {
         dispatch(login(user.uid, user.displayName));
       })
       .catch((e) => {
-		Swal.fire('Error', e.message, 'error');
-		console.log(e);
-	  });
+        Swal.fire("Error", e.message, "error");
+        console.log(e);
+      });
   };
 };
 
 export const startRegisterWhitEmailPassword = (email, password, name) => {
+  let band = false;
   return (dispatch) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      // .then(function(){
-      //     
-      // 	dispatch(startLoading());
-      // })
-      .then(async ({ user }) => {
 
+      .then(async ({ user }) => {
         console.log(user);
 
         await user.updateProfile({ displayName: name });
@@ -54,29 +49,38 @@ export const startRegisterWhitEmailPassword = (email, password, name) => {
         dispatch(login(user.uid, user.displayName));
 
         dispatch(finishLoading());
+        console.log(user);
+        console.log(band);
+      })
+      .then(function () {
+        verifyEmial();
+        dispatch(startLoading());
       })
       .catch((e) => {
         console.log(e);
-		Swal.fire('Error', e.message, 'error');
+        Swal.fire("Error", e.message, "error");
         dispatch(finishLoading());
       });
   };
 };
 
-/*** Verifica si el Email Existe o NO 
+/*** Verifica si el Email Existe o NO */
 const verifyEmial = () => {
-	const user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
 
-	user
-		.sendEmailVerification()
-		.then(function () {
-			console.log("verificado");
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+  user
+    .sendEmailVerification()
+    .then(function () {
+      console.log("verificado");
+
+      return true;
+    })
+    .catch(function (error) {
+      console.log(error);
+      return false;
+    });
 };
-*/
+
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
     dispatch(startLoading());
@@ -86,7 +90,6 @@ export const startLoginEmailPassword = (email, password) => {
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
-
         dispatch(finishLoading());
       })
       .catch((e) => {
