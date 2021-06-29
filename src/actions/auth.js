@@ -90,6 +90,7 @@ export const startLoginEmailPassword = (email, password) => {
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
+        console.log(user);
         dispatch(finishLoading());
       })
       .catch((e) => {
