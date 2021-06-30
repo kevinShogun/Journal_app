@@ -40,6 +40,7 @@ export const NoteScreen = () => {
             <NotesAppBar/> 
 
             <div className="notes__content">
+              
                 <input type="text"
                     placeholder="Some Awesone Title"
                     name="title"
@@ -48,6 +49,7 @@ export const NoteScreen = () => {
                     value={title}
                     onChange={handleInputChage}
                 />
+
                 <br />
                 <br />
                 <textarea
@@ -89,9 +91,7 @@ export const NoteScreen = () => {
                     </div>
                 )
             }
-
            
-
         </div>
     )
 }
