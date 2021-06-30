@@ -5,6 +5,8 @@ export const loadNotes = async ( uid ) => {
     const notesSnap = await db.collection(`${ uid }/journal/notes`).get();
     const notes = [];
 
+    notesSnap.orderBy('date').get();
+
     notesSnap.forEach( snapHijo => {
         notes.push({
             id: snapHijo.id,

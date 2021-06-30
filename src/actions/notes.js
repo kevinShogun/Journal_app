@@ -52,7 +52,6 @@ export const startLoadingNotes = ( uid ) => {
             
             const notes = await loadNotes( uid );
             dispatch( setNotes( notes ) );  
-
         } catch (error) {
             console.log(error);
         }
