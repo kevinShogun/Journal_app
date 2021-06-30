@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { firebase } from "../firebase/firebaseConfig";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
+import { firebase } from "../firebase/firebaseConfig";
 import { JournalScreen } from "../components/journal/JournalScreen";
 import { AuthRouter } from "./AuthRouter";
 import { login } from "../actions/auth";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
-import { loadNotes } from "../helpers/loadNotes";
-import { setNotes } from "../actions/notes";
+import { startLoadingNotes } from "../actions/notes";
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -20,21 +18,21 @@ export const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged( async (user) => {
-      /*	const userV = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(async (user) => {
+      /*	
+        const userV = firebase.auth().currentUser;
 
-      //if(user?.uid && userV.emailVerified){
-		  asi podemos verificar el email pero debemos de crear 
-		  una url personalzada caso contrario solo debemos de mandar el correo de verificacion 
-		  asi pues nos vamos
-		  */
+        if(user?.uid && userV.emailVerified){
+
+        --> asi podemos verificar el email pero debemos de crear 
+        --> una url personalzada caso contrario solo debemos de mandar el correo de verificacion 
+        --> asi pues nos vamos
+      */
       if (user?.uid) {
-        
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
 
-        const notes = await loadNotes(user.uid);
-        dispatch( setNotes(notes));
+        dispatch(startLoadingNotes(user.uid));
 
       } else {
         setIsLoggedIn(false);
@@ -42,6 +40,7 @@ export const AppRouter = () => {
 
       setChecking(false);
     });
+
   }, [dispatch, setChecking]);
 
   if (checking) {

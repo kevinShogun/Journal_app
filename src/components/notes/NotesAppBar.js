@@ -1,11 +1,15 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { startSaveNote } from '../../actions/notes';
 
 export const NotesAppBar = () => {
 
-    const handleClik = (e) => {
-        e.preventDefault();
+    const dispatch = useDispatch();
+    const {active} = useSelector(state => state.notes);
+    
+    const handleSaveNote = () => {
 
-        
+        dispatch(startSaveNote(active));
     }
 
     return (
@@ -13,13 +17,13 @@ export const NotesAppBar = () => {
             <span>23 de abril 2020</span>
             <div>
                 <button className="btn">
-                    Picture
+                <i className="far fa-image"></i> Picture
                 </button>
 
                 <button 
-                    onClick={handleClik}
-                className="btn">
-                    Save
+                className="btn"
+                onClick={handleSaveNote}>
+                <i className="far fa-save"></i> Save
                 </button>
             </div>
         </div>

@@ -27,23 +27,24 @@ export const SideBar = () => {
       <img src={photoURL} alt="profile" className="journal__profile" />
       <div className="journal__sidebar-navbar">
         <h3 className="mt-5">
-          <i className="far fa-moon"></i>
+          <i className="far fa-user"></i>
+          &nbsp; 
           <span>{name}</span>
         </h3>
 
         <button className="btn" onClick={handleLogOut}>
-          Log out
+        <i className="fas fa-sign-out-alt"></i> Logout
         </button>
       </div>
 
       <div className="journal__new-entry" 
             onClick={handleAddNew}
       >
-        <img
+         <img
           className="journal__img-entry"
           src={`../assets/2830540.png`}
           alt="entry button"
-        />
+        /> 
         <p className="mt-5">New Entry</p>
       </div>
 
