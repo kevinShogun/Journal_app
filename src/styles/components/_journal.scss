@@ -60,6 +60,7 @@
     border-radius: 10px;
     color: $dark-gray;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
     margin-right: 10px;
     overflow: hidden;
@@ -136,5 +137,8 @@
     }
     .journal__sidebar-navbar{
         flex-direction: column;
+    }
+    .journal__profile{
+        left: 0;
     }
 }

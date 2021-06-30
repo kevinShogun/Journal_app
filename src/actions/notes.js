@@ -1,4 +1,6 @@
+import Swal from "sweetalert2";
 import { db } from "../firebase/firebaseConfig";
+import { fileUpload } from "../helpers/fileUpload";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
@@ -36,11 +38,16 @@ export const activeNote = ( id, note ) => ({
 });
 
 export const startLoadingNotes = ( uid ) => {
-    return async( dispatch ) => {
-        
-        const notes = await loadNotes( uid );
-        dispatch( setNotes( notes ) );
 
+    return async( dispatch ) => {
+        try {
+            
+            const notes = await loadNotes( uid );
+            dispatch( setNotes( notes ) );  
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -62,8 +69,73 @@ export const startSaveNote = (note) => {
         const notesToFireStore = {...note};
         delete notesToFireStore.id;
 
-        await db.doc(`${uid}/journal/notes${note.id}`).update(notesToFireStore);
+        try {
+            
+            await db.doc(`${uid}/journal/notes${note.id}`).update(notesToFireStore);    
+            dispatch( refreshNotes(note.id, notesToFireStore));
+        
+        } catch (e) {
+            Swal.fire('Error', e.message, 'error');
+        }
 
+
+        Swal.fire('Saved', note.title, 'success');
+    }
+}
+
+export const refreshNotes = (id, note) => ({
+    type: types.notesUpdated,
+    payload:{
+        id,
+        note:{
+            id,
+            ...note
+        }
+    }   
+});
+
+export const startImageUploading = (file) => {
+   
+    return async(dispacth, getState) =>{
+        
+        const {active : activeNote} = getState().notes;
+        console.log(file);
+        console.log(activeNote);
+
+        Swal.fire({
+            title: 'Uploading...',
+            text:'Please wait...',
+            allowOutsideClick: false,
+            onBeforeOpen: () =>{
+                Swal.showLoading();
+            }
+        });
+        const fileUrl = fileUpload(file);
+        console.log(fileUrl);
+
+        activeNote.url = fileUrl;
+        dispacth(startSaveNote(activeNote))
+
+        Swal.close();
 
     }
 }
+
+
+export const startDeleting = (id) => {
+    return async (dispacth, getState) => {
+
+        const uid = getState().auth.uid;
+
+        await db.doc(`${uid}/journal/notes/${id}`).delete()
+            .catch(
+                console.log('error al ekimianr'),
+            );
+            dispacth(deleteNote(uid));
+    }
+}
+
+export const deleteNote = (id) => ({
+    type: types.notesDelete,
+    payload:id
+})

@@ -11,12 +11,34 @@ export const NotesAppBar = () => {
 
         dispatch(startSaveNote(active));
     }
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        console.log(file);
+        
+        if(file){
+            
+        }
+    }
+
+    const handleSavePicture = () => {
+        document.querySelector('#fileSelector').click();
+    }
 
     return (
         <div className="notes__appbar">
+        {/* Colocar la fecha de la nota */}
             <span>23 de abril 2020</span>
+            <input
+                id='fileSelector'
+                type='file'
+                name='file'
+                style={{ display:'none'}}
+                onChange={handleFileChange}
+            />
             <div>
-                <button className="btn">
+                <button className="btn"
+                    onChange={handleSavePicture}
+                >
                 <i className="far fa-image"></i> Picture
                 </button>
 

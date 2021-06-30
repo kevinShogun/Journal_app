@@ -34,7 +34,14 @@
         color: $primary;
     }
 }
-
+.btn-danger{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 150px;
+    color: $font-light;
+    background-color: $second;
+}
 
 .google-btn{
     cursor: pointer;
@@ -89,5 +96,7 @@
     .google-btn .btn-text{
         margin-right: 85px;
     }
-   
+    .btn-danger{
+        width: 100px;
+    }
 }
