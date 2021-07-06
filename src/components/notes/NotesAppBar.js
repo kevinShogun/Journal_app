@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startSaveNote } from '../../actions/notes';
+import { startImageUploading, startSaveNote } from '../../actions/notes';
 
 export const NotesAppBar = () => {
 
@@ -10,18 +10,21 @@ export const NotesAppBar = () => {
     const handleSaveNote = () => {
 
         dispatch(startSaveNote(active));
+        console.log('click');
     }
+
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        console.log(file);
         
         if(file){
-            
+            dispatch( startImageUploading(file) );    
         }
     }
 
     const handleSavePicture = () => {
+
         document.querySelector('#fileSelector').click();
+        console.log('click');
     }
 
     return (
@@ -35,9 +38,10 @@ export const NotesAppBar = () => {
                 style={{ display:'none'}}
                 onChange={handleFileChange}
             />
+
             <div>
                 <button className="btn"
-                    onChange={handleSavePicture}
+                    onClick={handleSavePicture}
                 >
                 <i className="far fa-image"></i> Picture
                 </button>

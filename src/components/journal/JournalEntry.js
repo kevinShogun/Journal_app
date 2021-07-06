@@ -20,11 +20,13 @@ export const JournalEntry = ({ id, title, body, date, url }) => {
 
   return (
     <div className="journal__entry pointer" onClick={handleEntryClick}>
+
       {url && (
         <div
           className="journal__entry-picture"
           style={{
-            backgroundSize: "cover",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundImage: `url(${url})`,
           }}
