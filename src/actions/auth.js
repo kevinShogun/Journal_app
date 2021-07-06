@@ -12,7 +12,7 @@ export const startGoogleLogin = () => {
   return (dispatch) => {
     firebase
       .auth()
-      .signInWithRedirect(googleAuthProvider)
+      .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
       })
@@ -24,7 +24,7 @@ export const startGitHubLogin = () => {
   return (dispatch) => {
     firebase
       .auth()
-      .signInWithRedirect(githubAuthProvider)
+      .signInWithPopup(githubAuthProvider)
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
       })
